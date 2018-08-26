@@ -34,7 +34,7 @@ def car_detail(request, id):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/cars/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -52,10 +52,18 @@ def car_new(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/cars/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CarNewForm()
 
     return render(request, 'car_new.html',{'form': form})
+
+def car_delete(request, id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # process delete
+        return HttpResponseRedirect('/cars/')
+
+    return HttpResponseRedirect('/cars/')

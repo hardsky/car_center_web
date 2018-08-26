@@ -1,0 +1,5 @@
+
+<form id="del{{record.id}} " action="{% url 'car_delete' record.id%}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
