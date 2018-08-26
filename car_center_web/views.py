@@ -1,9 +1,7 @@
 from django.shortcuts import render
-import django_tables2 as tables
-
-class CarsTable(tables.Table):
-    id = tables.Column()
-    name = tables.Column()
+from django_tables2 import RequestConfig
+from .tables import CarsTable
+from .forms import CarForm
 
 def cars(request):
     data = [
@@ -22,5 +20,9 @@ def cars(request):
     ]
 
     table = CarsTable(data)
-
+    RequestConfig(request).configure(table)
     return render(request, 'cars.html', {'cars': table})
+
+def car_detail(request, id):
+    form = CarForm(initial = {'id': 1, 'name': 'Test1'})
+    return render(request, 'car_detail.html',{'form': form})
